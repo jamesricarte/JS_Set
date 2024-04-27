@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symmetric Difference</title>
+
+  <style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Symmetric Difference</h1>
+  <div id="result"></div>
+
+  <script>
+    let set1 = new Set([1, 2, 3, 4]);
+    let set2 = new Set([3, 4, 5, 6]);
+
+    function symmetricDifference(setA, setB) {
+        let result = new Set(setA);
+
+        for (let item of setB) {
+            if (result.has(item)) {
+                result.delete(item); 
+            } else {
+                result.add(item); 
+            }
+        }
+
+        return result;
+    }
+
+    let symmetricDiff = symmetricDifference(set1, set2);
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML += "<p><strong>Symmetric Difference:</strong> " + Array.from(symmetricDiff).join(", ") + "</p>";
+
+    symmetricDiff.add(7); 
+    resultDiv.innerHTML += "<p><strong>After adding 7:</strong> " + Array.from(symmetricDiff).join(", ") + "</p>";
+
+    resultDiv.innerHTML += "<p><strong>Has 4:</strong> " + symmetricDiff.has(4) + "</p>"; 
+
+    resultDiv.innerHTML += "<p><strong>Items:</strong></p>"; 
+    symmetricDiff.forEach(item => {
+        resultDiv.innerHTML += "<p>" + item + "</p>";
+    });
+
+    symmetricDiff.delete(3);
+    resultDiv.innerHTML += "<p><strong>After deleting 3:</strong> " + Array.from(symmetricDiff).join(", ") + "</p>";
+
+    resultDiv.innerHTML += "<p><strong>Size:</strong> " + symmetricDiff.size + "</p>"; 
+
+    symmetricDiff.clear(); 
+    resultDiv.innerHTML += "<p><strong>After clearing the set:</strong> " + Array.from(symmetricDiff).join(", ") + "</p>";
+
+  </script>
+</body>
+</html>
